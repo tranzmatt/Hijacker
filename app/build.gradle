@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 android {
-    compileSdkVersion 29
+    compileSdkVersion 33
     defaultConfig {
         applicationId "com.hijacker"
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 36
-        versionName "v1.5-beta.12"
+        minSdkVersion 29
+        targetSdkVersion 33
+        versionCode 40
+        versionName 'v1.6'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
@@ -25,20 +25,29 @@ android {
             path "CMakeLists.txt"
         }
     }
-    ndkVersion = '21.0.6113669'
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    ndkVersion = '27.0.12077973'
+    namespace 'com.hijacker'
+    packagingOptions {
+        jniLibs {
+            useLegacyPackaging false
+        }
+    }
 }
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.6.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.google.android.material:material:1.1.0'
-    testImplementation 'junit:junit:4.12'
+    implementation 'com.google.android.material:material:1.9.0'
+    testImplementation 'junit:junit:4.13.2'
     implementation 'androidx.cardview:cardview:1.0.0'
-
-    implementation 'com.google.android.material:material:1.1.0'
 }
 
 repositories {
